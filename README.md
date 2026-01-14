@@ -51,7 +51,7 @@ Dieses Tool wurde für erfahrene Nutzer entwickelt. Die Nutzung erfolgt auf eige
 
 📄 Lizenz
 
-Dieses Projekt ist unter der MIT-Lizenz lizenziert - siehe die LICENSE Datei für Details.
+Dieses Projekt ist unter der GNU General Public License v3.0 lizenziert - siehe die LICENSE Datei für Details.
 
 Entwickelt von VisionGaiaTechnology.
 Status: System Secure. Singularity Achieved.
