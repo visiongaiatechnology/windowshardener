@@ -1,0 +1,190 @@
+========================================================================
+         APEX OMEGA PROTOCOL - MASTER DEPLOYMENT GUIDE
+========================================================================
+
+VERSION: 2.0 (Full Disclosure)
+ZIEL: Härtung, Bereinigung und Optimierung von Windows 10/11.
+
+DIESE ANLEITUNG ENTHÄLT:
+1. Den Schnell-Start (Automatische Installation).
+2. Die technische Dokumentation aller Skripte (Was passiert genau?).
+3. Anleitungen für den täglichen Betrieb (Gatekeeper).
+
+========================================================================
+         APEX OMEGA PROTOCOL - MASTER DEPLOYMENT GUIDE
+========================================================================
+
+VERSION: 2.1 (Auto-Launcher)
+ZIEL: Härtung, Bereinigung und Optimierung von Windows 10/11.
+VORAUSSETZUNG: Installiertes PowerShell 7 (https://aka.ms/powershell).
+
+------------------------------------------------------------------------
+SEKTION 1: VORBEREITUNG
+------------------------------------------------------------------------
+1. Entpacke den Ordner "Apex_Cleanup" komplett (z.B. auf den Desktop).
+2. Stelle sicher, dass du PowerShell 7 installiert hast.
+   (Der Launcher wird dich warnen, falls es fehlt).
+
+------------------------------------------------------------------------
+SEKTION 2: INSTALLATION STARTEN (EASY MODE)
+------------------------------------------------------------------------
+Wir haben einen "Launcher" gebaut, der alles automatisch macht.
+
+1. Öffne den Ordner "Apex_Cleanup".
+2. Mache einen DOPPELKLICK auf die Datei:
+   >> SETUP_STARTEN.cmd <<
+   (Das ist die Datei mit dem Zahnrad- oder Fenster-Symbol).
+
+3. Bestätige die Administrator-Abfrage (Ja).
+
+4. Das Menü öffnet sich. Wähle dein Profil:
+   [A] GAMING -> Maximale FPS, Ping-Optimiert, Savegames erlaubt.
+   [B] FORTRESS -> Alles geblockt. Internet Whitelist. Savegames gesperrt.
+
+5. Folge den Anweisungen.
+
+HINWEIS FÜR PROFIS (MANUELL):
+Falls du den Launcher nicht nutzen willst, kannst du die .ps1 Dateien auch
+manuell über ein PowerShell 7 Terminal starten (Rechtsklick -> Mit PowerShell 7 öffnen).
+
+------------------------------------------------------------------------
+SEKTION 3: TECHNISCHE DOKUMENTATION (WAS MACHEN DIE SKRIPTE?)
+------------------------------------------------------------------------
+Hier wird transparent erklärt, was jedes Modul im Hintergrund tut.
+
+### PHASE 1: BASIS HYGIENE (Ordner: "Basic")
+Diese Skripte werden immer ausgeführt, egal welches Profil du wählst.
+
+[1] Lockdown.ps1 (Dienste & Tasks)
+    - DIENSTE: Deaktiviert DiagTrack (Telemetrie), WerSvc (Fehlerberichte), OneSyncSvc.
+    - TASKS: Löscht geplante Aufgaben für "Customer Experience" und "Application Experience".
+    - REGISTRY: Setzt "AllowTelemetry" auf 0 und deaktiviert Cortana/WebSearch.
+    - FIREWALL: Blockiert "CompatTelRunner.exe" und "DeviceCensus.exe" (Hard Block).
+
+[2] Cleanup.ps1 (Visuelle Bereinigung)
+    - EDGE: Deaktiviert Sidebar, Shopping-Assistent und Bing-Button.
+    - EXPLORER: Entfernt Werbung im Startmenü ("Vorschläge").
+    - WIDGETS: Deaktiviert die News/Wetter-Engine (spart RAM).
+    - DESKTOP: Löscht das "Spotlight"-Icon und erzwingt Wallpaper-Refresh.
+
+[3] DeBloat.ps1 (App-Entfernung)
+    - AKTION: Entfernt vorinstallierte UWP-Apps (Candy Crush, Xbox, Mail, Solitaire, etc.).
+    - TIEFE: Entfernt Apps für den aktuellen User UND aus dem System-Image (keine Wiederkehr).
+    - HINWEIS: Wenn du die "Fotos"-App brauchst, bearbeite das Skript vorher!
+
+[4] Security_Hardening_Ghost.ps1 (Netzwerk-Sicherheit)
+    - PROTOKOLLE: Deaktiviert SMBv1 (WannaCry-Schutz).
+    - RDP: Deaktiviert Remote Desktop (Port 3389) komplett.
+    - LAN: Deaktiviert LLMNR & NetBIOS (Verhindert Passwort-Klau im lokalen Netzwerk).
+    - TUNNEL: Deaktiviert IPv6 Tunneling (Teredo/ISATAP) um Firewalls nicht zu umgehen.
+
+[NEU] DNS_Privacy.ps1 (Anti-Tracking)
+    - AKTION: Ändert die DNS-Server deiner Netzwerkkarte.
+    - ZIEL: Umgeht das Tracking deines Internetanbieters (ISP).
+    - SERVER: Setzt MULLVAD (Log-Free) und QUAD9 (Malware-Filter).
+    - HINWEIS: Wird in allen Profilen aktiviert (außer Custom: abwählbar).
+
+---
+
+### PHASE 2: PROFIL WAHL (Gaming vs. Fortress)
+
+>>> PFAD A: GAMING (Ordner: "Gaming Pfad")
+Optimiert für Leistung und Kompatibilität.
+
+[1] Gaming_Boost.ps1 (Netzwerk & Performance)
+    - LATENZ: Deaktiviert "Network Throttling" (Wert: FFFFFFFF) für stabilen Ping.
+    - CPU: Setzt "SystemResponsiveness" auf 0 (Games bekommen 100% CPU-Priorität).
+    - FIREWALL: Blockiert nur Microsoft-Telemetrie. Steam/Discord/Games bleiben offen.
+
+[2] Defender_Gaming.ps1 (Virenschutz)
+    - CLOUD: Level 2 ("High"). Blockt Malware, lässt aber die meisten Mods/Trainer zu.
+    - FOLDER ACCESS: DEAKTIVIERT. Spiele können problemlos Spielstände speichern.
+    - ASR: Aktiviert Exploit-Schutz, aber blockiert keine harmlosen .exe Dateien.
+
+>>> PFAD B: FORTRESS (Ordner: "Full Fortress Pfad")
+Nur für Experten. Maximale Härtung.
+
+[1] Full_Lockdown.ps1 (Firewall Wall)
+    - POLICY: "Default Deny". Aller ausgehender Traffic wird geblockt.
+    - WHITELIST: Nur DNS, Zeit, Browser, Steam & Discord sind erlaubt.
+    - FOLGE: Jedes neue Spiel muss manuell per PowerShell freigeschaltet werden!
+
+[2] Defender_Fortress.ps1 (Virenschutz)
+    - CLOUD: Level 6 ("Zero Tolerance"). Löscht unbekannte Dateien sofort.
+    - FOLDER ACCESS: AKTIVIERT. Programme dürfen nicht in Dokumente schreiben.
+    - FOLGE: Spiele stürzen ab, wenn sie speichern wollen (muss manuell erlaubt werden).
+
+---
+
+### PHASE 3: TOTAL ISOLATION (Ordner: "Windows Silence")
+[OPTIONAL] Windows_Silence.ps1
+    - UPDATE KILL: Zerstört den Windows Update Dienst (auch Medic Service).
+    - HOSTS: Leitet Telemetrie-Domains auf 0.0.0.0 um (Null-Routing).
+    - FOLGE: Keine Updates mehr. Store & Xbox App defekt. Nur für Offline-Szenarien empfohlen.
+
+------------------------------------------------------------------------
+SEKTION 4: OPERATIVER BETRIEB (GATEKEEPER)
+------------------------------------------------------------------------
+Nach der Installation ist das System verriegelt.
+Um etwas Neues zu installieren (Treiber, Spiel), nutze den Gatekeeper.
+
+1. Gehe in deinen Pfad-Ordner (z.B. "Gaming Pfad").
+2. Rechtsklick auf "Gatekeeper_Gaming.ps1" -> Mit PowerShell ausführen.
+3. WARTE auf die Meldung "SCHILDE UNTEN".
+4. Installiere dein Spiel / Treiber.
+5. Drücke ENTER im Fenster.
+6. Die Sicherheit wird automatisch wiederhergestellt.
+
+WARUM? 
+Der Gatekeeper verhindert, dass du Sicherheitseinstellungen manuell ändern und 
+dann vergessen musst, sie wieder einzuschalten.
+
+------------------------------------------------------------------------
+FEHLERBEHEBUNG
+------------------------------------------------------------------------
+PROBLEM: Ich habe versehentlich das falsche Profil installiert.
+LÖSUNG: Führe einfach den Installer (SETUP_STARTEN.cmd) nochmal aus.
+
+PROBLEM: Mein Spiel startet nicht / Keine Verbindung (Fortress Modus).
+URSACHE: Im "Fortress" Modus ist die Firewall dicht (Default Deny).
+LÖSUNG: Du musst die .exe des Spiels freigeben.
+
+   1. Finde den Pfad zur .exe (z.B. "C:\Games\MeinSpiel\game.exe").
+   2. Öffne PowerShell als Administrator.
+   3. Kopiere diesen Befehl und passe den Pfad an:
+   
+   New-NetFirewallRule -DisplayName "Game-Allow" -Direction Outbound -Program "C:\Pfad\zur\exe" -Action Allow
+
+   NOT-AUS (Wenn gar nichts mehr geht):
+   Um die Firewall sofort komplett zu öffnen, nutze diesen Befehl:
+   Set-NetFirewallProfile -Profile Domain,Public,Private -DefaultOutboundAction Allow
+
+------------------------------------------------------------------------
+SEKTION 5: QUALITÄTSKONTROLLE (AUDIT)
+------------------------------------------------------------------------
+Vertrauen ist gut, Kontrolle ist besser.
+Wir haben ein Diagnose-Tool beigelegt, das dein System prüft.
+
+1. Rechtsklick auf "Audit_Apex.ps1" (im Hauptordner).
+2. Wähle "Mit PowerShell ausführen".
+
+DAS TOOL PRÜFT:
+- Sind die gefährlichen Dienste wirklich tot?
+- Ist die Bloatware weg?
+- Welches Defender-Profil ist aktiv (Gaming oder Fortress)?
+- Ist SMBv1 (Sicherheitsrisiko) deaktiviert?
+- Ist die Firewall im Lockdown-Modus?
+
+INTERPRETATION:
+[GRÜN] = Alles perfekt. Apex Protokoll ist aktiv.
+[GELB] = Abweichung gefunden (z.B. Gaming Profil erlaubt Savegames).
+[ROT]  = Kritischer Dienst läuft noch oder Schutz fehlt!
+
+HINWEIS:
+Wenn du das GAMING-Profil nutzt, ist es normal, dass "Controlled Folder Access"
+als AUS (Gelb/Grün) angezeigt wird und die Firewall auf "ALLOW" steht.
+Das ist notwendig, damit Spiele funktionieren!
+
+========================================================================
+STATUS: END OF FILE.
+========================================================================

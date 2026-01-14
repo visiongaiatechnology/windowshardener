@@ -1,0 +1,72 @@
+========================================================================
+APEX OMEGA PROTOCOL - RELEASE NOTES
+
+VERSION:    8.0 FINAL
+CODENAME:   "SINGULARITY"
+BUILD TYPE: RTM (Release To Manufacture)
+ENGINE:     Hybrid Core (WPF/XAML + PowerShell 5.1/7)
+DATE:       2026-01-14
+
+[MISSION STATEMENT]
+Apex Omega V8 ist die finale Evolution des Systemhärtungs-Protokolls.
+Wir haben die veraltete WinForms-Technologie eliminiert und durch eine
+vollständig hardwarebeschleunigte WPF-Engine ersetzt. Das Ergebnis ist
+eine rahmenlose, transparente "Glass-Morphism" Oberfläche, die sowohl
+auf Windows 10 Legacy als auch auf Windows 11 Next-Gen läuft.
+
+[NEUE KERN-FEATURES]
+
+🚀 SINGULARITY ENGINE (V8)
+
+Native WPF-Renderpipeline für gestochen scharfe Schrift (High-DPI).
+
+"Glass-Holo" Design: Transparente Layer, Neon-Akzente, Rahmenlos.
+
+Hybrid-Architektur: Erkennt automatisch, ob PowerShell 7 oder 5.1
+läuft und passt die Backend-Logik dynamisch an. Keine Abstürze mehr.
+
+🛡️ GHOST PROTOCOL & DNS SHIELD
+
+Ghost Protocol: Deaktiviert SMBv1, NetBIOS und LLMNR, um das System
+im lokalen Netzwerk unsichtbar für Hacker zu machen.
+
+DNS Shield: Leitet Traffic über Mullvad (No-Log) und Quad9, um
+ISP-Tracking und Zensur zu umgehen.
+
+🎮 INTELLIGENT PRESETS
+
+GAMING RIG: Priorisiert CPU/GPU für Spiele, deaktiviert Netzwerk-
+Drosselung, lässt Steam/Discord durch die Firewall.
+
+FORTRESS MODE: "Default Deny" Firewall-Strategie. Blockiert alles,
+was nicht explizit erlaubt ist. Zero Tolerance.
+
+⚡ ZERO-CONSOLE ARCHITEKTUR
+
+Das Tool läuft jetzt als echte, eigenständige Anwendung (.exe).
+
+Kein störendes schwarzes Konsolenfenster ("Input Window") mehr.
+
+Asynchrone Prozess-Steuerung verhindert, dass die GUI "einfriert",
+während Optimierungen laufen.
+
+[TECHNISCHE DETAILS & FIXES]
+
+[FIX] XAML Event Binding: Manuelle Zuweisung aller Klick-Events verhindert
+Parser-Fehler auf älteren Systemen.
+[FIX] Rendering: TextOptions.TextFormattingMode="Display" aktiviert für
+maximale Lesbarkeit auf 4K Monitoren.
+[FIX] Orchestrator: Pfade werden nun relativ zur .exe absolut berechnet,
+um "File Not Found" Fehler in Unterordnern zu eliminieren.
+[NEW] Audit V3: Das Diagnose-Tool prüft jetzt auch DNS-Lecks und
+Firewall-Status in Echtzeit.
+
+[DEPLOYMENT ANWEISUNG]
+
+Stellen Sie sicher, dass die Datei "Apex_Commander.exe" IMMER zusammen
+mit den Modul-Ordnern ("Basic", "Gaming Pfad", etc.) im selben
+Verzeichnis liegt. Das System ist modular – fehlen die Ordner, fehlen
+die Funktionen.
+
+DEVELOPED BY VISIONGAIATECHNOLOGY
+SYSTEM STATUS: SECURE.
