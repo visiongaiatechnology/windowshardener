@@ -2,6 +2,8 @@
 
 APEX OMEGA COMMANDER ist eine hochmoderne Security-Hardening- und Performance-Suite für Windows 10 & 11. Entwickelt für Power-User, Gamer und Datenschutz-Enthusiasten, bietet dieses Tool eine intuitive "Glass-Morphism" Oberfläche zur tiefgreifenden Systemoptimierung.
 
+Designed und Entwickelt bei VisionGaiaTechnology X KDY https://github.com/khajrula
+
 🚀 Kern-Features
 
 ⚡ Gaming Optimization: Maximale FPS und minimaler Ping durch Deaktivierung von Network-Throttling und Hintergrund-Telemetrie.
